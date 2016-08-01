@@ -3,16 +3,19 @@ from Networking import Http
 from HTMLUtil import LinkExtractor, Identifiers
 from CommonUtil import StringUtil
 
-def crawl_linear():
+def crawl_linear(search_string=None):
 
     website_stream = ""
     website_links = []
     website_page_links = []
+    search_results = []
 
     crawlSites = cfg.websites
 
     for website in cfg.websites:
 
+        print("Accessing website : " + website + " for links")
+        print()
         website_stream = Http.make_request(website)
 
         if website_stream is not None:
@@ -27,6 +30,17 @@ def crawl_linear():
 
                 if Identifiers.is_internal_route(link):
                     route = website + link
-                    print(route)
-            # # print("Accessing " + website + StringUtil.filter_web_address(page))
+
+                    print("Accessing sub route : " + route)
+                    print()
+                    route_stream = Http.make_request(route)
+
+                    if search_string is not None:
+
+                        if search_string in str(route_stream):
+
+                            print(" '" + search_string + "' found in " + route)
+                            print()
+                            search_results.append(route)
+
 

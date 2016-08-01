@@ -22,7 +22,10 @@ def filter_links(links):
 
         for filter_symbol in filter_symbols:
             if filter_symbol not in link:
-                filtered_links.append(link)
+                filtered_links.append(link.replace(" ", ""))
 
-    return filtered_links
+    return remove_duplicates(filtered_links)
 
+
+def remove_duplicates(l):
+    return list(set(l))
