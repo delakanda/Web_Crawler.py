@@ -5,7 +5,7 @@ from CommonUtil import StringUtil
 from termcolor import colored, cprint
 
 
-def crawl_linear(search_string=None):
+def crawl(search_string=None):
 
     website_stream = ""
     website_links = []

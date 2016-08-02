@@ -1,6 +1,6 @@
 #!/usr/bin/python3.5
 
-from Cognition import LinearCrawl
+from Cognition import DeepCrawl
 
-LinearCrawl.crawl_linear("the")
+DeepCrawl.crawl("Apanka")
 
