@@ -1,5 +1,6 @@
 import httplib2
 from CommonUtil import StringUtil
+from termcolor import colored, cprint
 
 
 def make_request(website_address):
@@ -13,5 +14,6 @@ def make_request(website_address):
 
         return response
     except:
-        print("Error accessing site : " + website_address)
+        cprint("Error accessing site : " + website_address,'red')
+        print("")
         return None

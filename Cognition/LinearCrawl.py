@@ -2,6 +2,7 @@ import Config.websites_config as cfg
 from Networking import Http
 from HTMLUtil import LinkExtractor, Identifiers
 from CommonUtil import StringUtil
+from termcolor import colored, cprint
 
 
 def crawl_linear(search_string=None):
@@ -15,7 +16,7 @@ def crawl_linear(search_string=None):
 
     for website in crawl_sites:
 
-        print("Accessing website : " + website + " for links")
+        cprint("Accessing website : " + website + " for links ...", "blue")
         print("")
         website_stream = Http.make_request(website)
 
@@ -31,17 +32,21 @@ def crawl_linear(search_string=None):
 
                 if Identifiers.is_internal_route(link):
                     route = website + link
-
-                    print("Accessing sub route : " + route)
+                    cprint("Accessing sub route : " + route, "blue")
                     print("")
-                    route_stream = Http.make_request(route)
 
-                    if search_string is not None:
+                elif Identifiers.is_external_route(link):
+                    route = link
+                    cprint("Accessing route : " + route, "blue")
+                    print("")
 
-                        if search_string in str(route_stream):
+                route_stream = Http.make_request(route)
 
-                            print(" '" + search_string + "' found in " + route)
-                            print("")
-                            search_results.append(route)
+                if search_string is not None:
+
+                    if search_string in str(route_stream):
+                        cprint(" '" + search_string + "' found in " + route, "green")
+                        print("")
+                        search_results.append(route)
 
 

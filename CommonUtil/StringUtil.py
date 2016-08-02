@@ -17,12 +17,14 @@ def filter_links(links):
 
     for link in links:
 
-        if len(link) == 1 and '/' == link:
-            continue
+        if link is not None:
 
-        for filter_symbol in filter_symbols:
-            if filter_symbol not in link:
-                filtered_links.append(link.replace(" ", ""))
+            if len(link) == 1 and '/' == link:
+                continue
+
+            for filter_symbol in filter_symbols:
+                if filter_symbol not in link:
+                    filtered_links.append(link.replace(" ", ""))
 
     return remove_duplicates(filtered_links)
 
