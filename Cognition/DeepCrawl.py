@@ -58,6 +58,23 @@ def crawl(search_string=None):
 
                     link_visit_tracker.append(sub_link)
 
+        print("")
+        cprint("Back from the deep hollow of the internet", "green")
+        print("")
+
+        if search_string is not None:
+            if len(search_results) > 0:
+                print("")
+                print("Search results for : " + search_string)
+                print("Result found at the following links: ")
+
+                for link in search_results:
+                    print(link)
+            else:
+                print("")
+                print("No search results for " + search_string)
+
+
 
 def get_links(website, root_website):
     global filtered_links
