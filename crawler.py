@@ -2,5 +2,5 @@
 
 from Cognition import DeepCrawl
 
-DeepCrawl.crawl("Apanka")
+DeepCrawl.crawl("Kanda")
 
