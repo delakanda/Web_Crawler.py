@@ -3,6 +3,7 @@ from Networking import Http
 from HTMLUtil import LinkExtractor, Identifiers
 from CommonUtil import StringUtil
 
+
 def crawl_linear(search_string=None):
 
     website_stream = ""
@@ -10,12 +11,12 @@ def crawl_linear(search_string=None):
     website_page_links = []
     search_results = []
 
-    crawlSites = cfg.websites
+    crawl_sites = cfg.websites
 
-    for website in cfg.websites:
+    for website in crawl_sites:
 
         print("Accessing website : " + website + " for links")
-        print()
+        print("")
         website_stream = Http.make_request(website)
 
         if website_stream is not None:
@@ -32,7 +33,7 @@ def crawl_linear(search_string=None):
                     route = website + link
 
                     print("Accessing sub route : " + route)
-                    print()
+                    print("")
                     route_stream = Http.make_request(route)
 
                     if search_string is not None:
@@ -40,7 +41,7 @@ def crawl_linear(search_string=None):
                         if search_string in str(route_stream):
 
                             print(" '" + search_string + "' found in " + route)
-                            print()
+                            print("")
                             search_results.append(route)
 
 
