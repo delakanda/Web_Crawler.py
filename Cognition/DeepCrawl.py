@@ -23,7 +23,7 @@ def crawl(search_string=None, argv_website=None):
         cprint("Getting initial website links ... ", "blue")
         print("")
 
-        filtered_website_links = get_links(root_website,root_website)
+        filtered_website_links = LinkExtractor.get_links(root_website, root_website)
 
         cprint("Building website link structure ... ", "blue")
         print("")
@@ -31,7 +31,7 @@ def crawl(search_string=None, argv_website=None):
         for indx, link in enumerate(filtered_website_links):
             website_dictionary[indx] = {
                 'main_link': link,
-                'sub_links': get_links(link,root_website)
+                'sub_links': LinkExtractor.get_links(link,root_website)
             }
 
         cprint("Link structure built", "blue")
@@ -80,29 +80,3 @@ def crawl(search_string=None, argv_website=None):
                 print("No search results for " + search_string)
 
 
-
-def get_links(website, root_website):
-    global filtered_links
-    website_page_links = [];
-    website_stream = Http.make_request(website)
-    return_links = []
-
-    if website_stream is not None:
-        website_links = LinkExtractor.extract_anchor_links(website_stream)
-
-        for link in website_links:
-            website_page_links.append(LinkExtractor.extract_attribute(link, 'href'))
-
-            filtered_links = StringUtil.filter_links(website_page_links)
-
-        for link in filtered_links:
-
-            if Identifiers.is_internal_route(link):
-                route = root_website + link
-
-            elif Identifiers.is_external_route(link):
-                route = link
-
-            return_links.append(route)
-
-    return return_links

@@ -1,6 +1,6 @@
 #!/usr/bin/python3.5
 
-from Cognition import DeepCrawl
+from Cognition import RandomCrawl
 from CommonUtil import StringUtil
 from termcolor import colored, cprint
 import sys
@@ -27,11 +27,12 @@ if len(sys.argv) > 1:
         if len(website) == 0:
             website = None
 
-        DeepCrawl.crawl(search_string, website)
+        RandomCrawl.crawl(search_string, website)
 
     else:
         cprint("Argument error", "red")
         cprint("Specify website as : --website=[website] and/or search word as --search=[search_word]")
 
-# else:
+else:
     # DeepCrawl.crawl()
+    RandomCrawl.crawl()
