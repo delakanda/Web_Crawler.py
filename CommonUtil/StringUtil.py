@@ -31,3 +31,12 @@ def filter_links(links):
 
 def remove_duplicates(l):
     return list(set(l))
+
+
+def get_argument_value(raw_arg):
+    split_val = raw_arg.split("=")
+
+    if len(split_val) > 1:
+        return split_val[1]
+    else:
+        return None

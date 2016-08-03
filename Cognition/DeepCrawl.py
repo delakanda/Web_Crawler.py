@@ -6,13 +6,18 @@ from termcolor import colored, cprint
 from CommonUtil import StringUtil
 
 
-def crawl(search_string=None):
+def crawl(search_string=None, argv_website=None):
     root_website = None
     website_dictionary = {}
     link_visit_tracker = []
     search_results = []
 
-    for website in cfg.websites:
+    if argv_website is not None:
+        websites_to_iterate = argv_website
+    else:
+        websites_to_iterate = cfg.websites
+
+    for website in websites_to_iterate:
         root_website = website
 
         cprint("Getting initial website links ... ", "blue")
