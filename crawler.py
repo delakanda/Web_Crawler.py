@@ -20,15 +20,14 @@ if len(sys.argv) > 1:
 
             if '--website' in val:
                 website.append(StringUtil.get_argument_value(val))
-            else:
-                website = None
 
             if '--search' in val:
                 search_string = StringUtil.get_argument_value(val)
-            else:
-                search_string = None
 
-        DeepCrawl.crawl(search_string,website)
+        if len(website) == 0:
+            website = None
+
+        DeepCrawl.crawl(search_string, website)
 
     else:
         cprint("Argument error", "red")
